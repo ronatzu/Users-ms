@@ -1,7 +1,17 @@
 package Saludity.User.Model.Pojo;
 
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import lombok.*;
 
+
+@Entity
+@Table(name="users")
+@Getter
+@Setter
+@ToString
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,8 +23,8 @@ public class User {
     @Column(name = "password")
     private String password;
 
-    @Column(name = "visible")
-    private Boolean visible;
+    @Column(name="active")
+    private boolean active;
 
 }
 
