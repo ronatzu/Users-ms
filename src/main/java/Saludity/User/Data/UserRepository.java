@@ -1,4 +1,4 @@
 package Saludity.User.Data;
 
-public class UserRepository {
+public interface UserRepository {
 }

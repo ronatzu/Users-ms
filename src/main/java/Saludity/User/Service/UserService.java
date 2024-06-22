@@ -1,4 +1,5 @@
 package Saludity.User.Service;
 
-public class UserService {
+public interface UserService {
+
 }
