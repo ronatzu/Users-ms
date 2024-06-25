@@ -1,4 +1,4 @@
-## Configuraci�n de Spring
+## Configuracion de Spring
 spring:
   application:
     name: User
@@ -12,6 +12,6 @@ spring:
       path: /h2-console
       settings:
         web-allow-others: true
-## Configuraci�n de Instancia
+## Configuracion de Instancia
 server:
   port: 8080

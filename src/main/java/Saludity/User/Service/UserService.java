@@ -10,7 +10,7 @@ public interface UserService {
     User login(String email, String password);
     User resetPassword(String email);
     User createUser(CreateUserRequest request);
-    Boolean deleteUser(Long id);
+    Boolean removeUser(Long id);
 
 
 

@@ -41,11 +41,5 @@ public class UserController {
             return ResponseEntity.badRequest().build();
         }
     }
-//Ejemplo API REST
-//    @GetMapping({"/hello","hw","hola"}) // Asi se puede asignar varios nombres
-//    public String hello(){
-//        System.out.println("SE IMPRIME");
-//        return "Hello World";
-//    }
 
 }

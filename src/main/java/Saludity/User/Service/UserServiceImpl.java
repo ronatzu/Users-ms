@@ -51,7 +51,6 @@ public class UserServiceImpl implements UserService {
             User user = User.builder()
                     .email(request.getEmail())
                     .password(request.getPassword())
-                    .active(request.isActive())
                     .build();
 
             return userRepository.save(user);
@@ -61,7 +60,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Boolean deleteUser(Long id) {
+    public Boolean removeUser(Long id) {
         return null;
     }
 }
