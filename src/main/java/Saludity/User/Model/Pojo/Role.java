@@ -34,4 +34,7 @@ public class Role {
             inverseJoinColumns = @JoinColumn(name = "permission_id",referencedColumnName = "id")
     )
     private List<Permission> permissions;
+
+    @ManyToMany(mappedBy = "roles")
+    private List<User> users;
 }

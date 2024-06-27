@@ -32,4 +32,7 @@ public class Profile {
     @Column(name="birthday")
     private LocalDate birthday;
 
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
 }

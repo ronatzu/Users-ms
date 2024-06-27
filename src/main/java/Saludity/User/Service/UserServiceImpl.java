@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Slf4j
@@ -28,10 +29,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User login(String email, String password){
-        User user =userRepository.findByEmail(email);
-        if (user!=null){
-            if (user.getPassword().equals(password)) {
-                return user;
+        Optional<User> user =userRepository.findByEmail(email);
+        if (user.isPresent()){
+            if (user.get().getPassword().equals(password)) {
+                return user.orElse(null);
             }
         }
         throw new RuntimeException("Invalid email or password");
@@ -61,7 +62,15 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Boolean removeUser(Long id) {
-        return null;
+        User user = userRepository.getById(Long.valueOf(id));
+        System.out.println(user);
+        if (user != null) {
+            userRepository.delete(user);
+            return Boolean.TRUE;
+        } else {
+            return Boolean.FALSE;
+        }
+
     }
 }
 

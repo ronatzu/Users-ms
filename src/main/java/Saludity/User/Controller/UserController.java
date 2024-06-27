@@ -14,6 +14,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/v0")
 @Slf4j
 @Tag(name = "User Controller", description = "Microservicio para gestionar datos de usuarios")
 public class UserController {
