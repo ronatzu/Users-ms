@@ -35,86 +35,86 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
             FilterChain filterChain) throws ServletException, IOException {
 
         System.out.println("Inicio Filter");
-//        final String token = getTokenFromRequest(request);
-//        final String username;
-//
-//        if (token==null)
-//        {
-//            filterChain.doFilter(request, response);
-//            return;
-//        }
-//
-//        System.out.println("Segund Filtro");
-//        username=jwtService.extractUsername(token);
-//
-//        if (username!=null && SecurityContextHolder.getContext().getAuthentication()==null)
-//        {
-//            UserDetails userDetails=userDetailsService.loadUserByUsername(username);
-//
-//            if (jwtService.isvalidateToken(token, userDetails))
-//            {
-//                UsernamePasswordAuthenticationToken authToken= new UsernamePasswordAuthenticationToken(
-//                        userDetails,
-//                        null,
-//                        userDetails.getAuthorities());
-//
-//                authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-//
-//                SecurityContextHolder.getContext().setAuthentication(authToken);
-//            }
-//
-//        }
-//
-//        filterChain.doFilter(request, response);
-//    }
-//
-//    private String getTokenFromRequest(HttpServletRequest request) {
-//        final String authHeader=request.getHeader(HttpHeaders.AUTHORIZATION);
-//
-//        if(StringUtils.hasText(authHeader) && authHeader.startsWith("Bearer "))
-//        {
-//            return authHeader.substring(7);
-//        }
-//        return null;
-//    }
+        final String token = getTokenFromRequest(request);
+        final String username;
 
-//
-//
-        final String authHeader = request.getHeader("Authorization");
-        final String jwt;
-        final String userEmail;
-        System.out.println(authHeader);
-
-        if (authHeader == null ) {
+        if (token==null)
+        {
             filterChain.doFilter(request, response);
-            System.out.println("Primer Bucle");
             return;
         }
-        jwt = authHeader.substring(7);
-        System.out.println(jwt);
-        userEmail = jwtService.extractUsername(jwt);
-        System.out.println(userEmail);
 
-        System.out.println("Medio Filter");
-        if (userEmail != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-            UserDetails userDetails = this.userDetailsService.loadUserByUsername(userEmail);
+        System.out.println("Segund Filtro");
+        username=jwtService.extractUsername(token);
 
-            if (jwtService.isvalidateToken(jwt, userDetails)) {
-                UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
-                        userDetails, null, userDetails.getAuthorities());
-                authToken.setDetails(
-                        new WebAuthenticationDetailsSource().buildDetails(request));
+        if (username!=null && SecurityContextHolder.getContext().getAuthentication()==null)
+        {
+            UserDetails userDetails=userDetailsService.loadUserByUsername(username);
+
+            if (jwtService.isvalidateToken(token, userDetails))
+            {
+                UsernamePasswordAuthenticationToken authToken= new UsernamePasswordAuthenticationToken(
+                        userDetails,
+                        null,
+                        userDetails.getAuthorities());
+
+                authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 
                 SecurityContextHolder.getContext().setAuthentication(authToken);
-
-                System.out.println("termino filter1");
             }
 
-
         }
-        System.out.println("termino filter 2");
+
         filterChain.doFilter(request, response);
     }
+
+    private String getTokenFromRequest(HttpServletRequest request) {
+        final String authHeader=request.getHeader(HttpHeaders.AUTHORIZATION);
+
+        if(StringUtils.hasText(authHeader) && authHeader.startsWith("Bearer "))
+        {
+            return authHeader.substring(7);
+        }
+        return null;
+    }
+
+//
+//
+//        final String authHeader = request.getHeader("Authorization");
+//        final String jwt;
+//        final String userEmail;
+//        System.out.println(authHeader);
+//
+//        if (authHeader == null ) {
+//            filterChain.doFilter(request, response);
+//            System.out.println("Primer Bucle");
+//            return;
+//        }
+//        jwt = authHeader.substring(7);
+//        System.out.println(jwt);
+//        userEmail = jwtService.extractUsername(jwt);
+//        System.out.println(userEmail);
+//
+//        System.out.println("Medio Filter");
+//        if (userEmail != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+//            UserDetails userDetails = this.userDetailsService.loadUserByUsername(userEmail);
+//
+//            if (jwtService.isvalidateToken(jwt, userDetails)) {
+//                UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
+//                        userDetails, null, userDetails.getAuthorities());
+//                authToken.setDetails(
+//                        new WebAuthenticationDetailsSource().buildDetails(request));
+//
+//                SecurityContextHolder.getContext().setAuthentication(authToken);
+//
+//                System.out.println("termino filter1");
+//            }
+//
+//
+//        }
+//        System.out.println("termino filter 2");
+//        filterChain.doFilter(request, response);
+//    }
 }
 
 

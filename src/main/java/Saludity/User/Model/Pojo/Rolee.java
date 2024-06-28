@@ -3,5 +3,8 @@ package Saludity.User.Model.Pojo;
 public enum Rolee
 {
     USER,
-    ADMIN
+    ADMIN,
+    SUPERADMIN,
+    MEDIC,
+
 }
