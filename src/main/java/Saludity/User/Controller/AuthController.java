@@ -7,7 +7,6 @@ import Saludity.User.Model.Request.RegisterRequest;
 import Saludity.User.Service.AuthService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,6 +23,7 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<AuthResponse> login(@RequestBody LoginRequest loginRequest){
+        System.out.println("Se inico login");
         return ResponseEntity.ok(authService.login(loginRequest));
     }
 

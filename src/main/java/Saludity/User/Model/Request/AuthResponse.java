@@ -10,5 +10,5 @@ import org.springframework.web.bind.annotation.RestController;
 @Builder
 public class AuthResponse
     {
-        String token;
+        private String token;
 }

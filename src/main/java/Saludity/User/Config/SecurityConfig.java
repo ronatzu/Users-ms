@@ -22,6 +22,7 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception
     {
+        System.out.println("Empeso seguridad");
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authRequest ->
@@ -38,6 +39,7 @@ public class SecurityConfig {
 
 
     }
+
 
 
 }

@@ -35,6 +35,6 @@ public class Role {
     )
     private List<Permission> permissions;
 
-    @ManyToMany(mappedBy = "roles")
-    private List<User> users;
+//    @ManyToMany(mappedBy = "roles")
+//    private List<User> users;
 }

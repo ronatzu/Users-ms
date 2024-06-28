@@ -1,5 +1,6 @@
 package Saludity.User.Model.Request;
 
+import Saludity.User.Model.Pojo.Profile;
 import lombok.*;
 
 @Getter
@@ -10,8 +11,5 @@ import lombok.*;
 public class RegisterRequest {
     private String email;
     private String password;
-    private String firstName;
-    private String lastName;
-    private String phoneNumber;
 
 }

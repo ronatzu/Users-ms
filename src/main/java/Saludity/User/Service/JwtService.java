@@ -34,11 +34,13 @@ public class JwtService {
         return Jwts.parserBuilder()
                 .setSigningKey(getSignKey())
                 .build()
-                .parseClaimsJwt(token)
+                .parseClaimsJws(token)
                 .getBody();
     }
 
     public String generateToken(UserDetails userDetails) {
+        System.out.println("Se genera el token ");
+        System.out.println(generateToken(new HashMap<>(),userDetails));
         return  generateToken(new HashMap<>(),userDetails);
     }
     public String generateToken(Map<String, Object> extraClaims,UserDetails userDetails){
@@ -46,18 +48,20 @@ public class JwtService {
                 .setClaims(extraClaims)
                 .setSubject(userDetails.getUsername())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis()+1000 *60*24))
+                .setExpiration(new Date(System.currentTimeMillis()+ 1000*60*24))
                 .signWith(getSignKey(),SignatureAlgorithm.HS256)
                 .compact();
     }
 
     public boolean isvalidateToken(String token, UserDetails userDetails) {
         final String username=extractUsername(token);
-        return (username.equals(userDetails.getUsername()) && !isTokenExprired(token));
+        System.out.println(username.equals(userDetails.getUsername()) && isTokenExprired(token));
+        return (username.equals(userDetails.getUsername()) && isTokenExprired(token));
     }
 
     private boolean isTokenExprired(String token) {
-        return extractExpiration(token).before(new Date());
+        System.out.println(!extractExpiration(token).before(new Date()));
+        return !extractExpiration(token).before(new Date());
 
     }
 
